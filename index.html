@@ -1,19 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>🦜 Polyglot - Piratical PyScript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desmos Graphs</title>
+    <script src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
     <link rel="stylesheet" href="https://pyscript.net/releases/2025.2.2/core.css">
     <script type="module" src="https://pyscript.net/releases/2025.2.2/core.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #input-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #calculator {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 50px);
+        }
+    </style>
 </head>
 <body>
-<h1>Polyglot 🦜 💬 🇬🇧 ➡️ 🏴‍☠️</h1>
-<p>Translate English into Pirate speak...</p>
-<input type="text" name="english" id="english" placeholder="Type English here..."/>
-<button py-click="translate_english">Translate</button>
-<div id="output"></div>
-<script type="py" src="./main.py" config="./config.json"></script>
-</body>
 
+<div id="input-container">
+    <label for="text">Введите текст:</label>
+    <input id="text" type="text">
+    <button onclick="graph()">Нарисовать</button>
+</div>
+
+<div id="calculator"></div>
+
+<script type="py" src="main.py" config="./config.json"></script>
+
+</body>
 </html>

@@ -1,3 +1,11 @@
 {
-    "packages": ["arrr"]
+    "packages": ["arrr"],
+    "js_modules": {
+        "main": {
+            "jsapi.js": "jsapi"
+        }
+    },
+    "files": {
+        "./jsapi.py": ""
+    }
 }
