@@ -1,5 +1,5 @@
 {
-    "packages": ["arrr"],
+    "packages": ["sympy"],
     "js_modules": {
         "main": {
             "jsapi.js": "jsapi"
