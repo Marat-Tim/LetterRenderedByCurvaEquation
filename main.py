@@ -1,5 +1,6 @@
+import os
+from Letter import Letter
 from common import *
-from letter.ru import А
 from config import *
 
 if debug:
@@ -11,7 +12,17 @@ init_desmos()
 
 char_to_letter: dict[str, Letter] = {}
 
-А.register(char_to_letter)
+all_letter_files = result = [os.path.join(dp, f) for dp, dn, filenames in os.walk("letter") for f in filenames if os.path.splitext(f)[1] == '.py']
+
+for file in all_letter_files:
+    name, _ = os.path.splitext(os.path.basename(file))
+    env = {}
+    with open(file, "r", encoding="utf-8") as f:
+        code = f.read()
+    exec(code, env)
+    expr = env.get('expr')
+    size = env.get('size')
+    char_to_letter[name] = Letter(expr, size)
 
 def validate(text: str):
     incorrect = []

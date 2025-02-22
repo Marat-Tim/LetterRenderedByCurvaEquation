@@ -9,7 +9,7 @@
         "./jsapi.py": "",
         "./config.py": "",
         "./common.py": "",
-        "./letter/Letter.py": "./letter/",
+        "./Letter.py": "",
         "./letter/ru/А.py": "./letter/ru/"
     }
 }
