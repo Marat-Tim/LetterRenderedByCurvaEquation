@@ -54,9 +54,8 @@ def graph(event):
             log(f"Начинаем рисовать символ номер {i}")
             letter = char_to_letter[text[i]]
             center = curr + S(letter.size()) / 2
-            x = x1 - center
             log("Устанавливаем итоговое выражение в элемент десмоса")
-            set_expr(str(i), letter.expr_latex(x))
+            set_expr(str(i), letter.expr_latex(x - center))
             curr += letter.size() + indent_size
     except ValueError as ex:
         log(str(ex))
