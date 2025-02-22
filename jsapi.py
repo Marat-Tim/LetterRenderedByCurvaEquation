@@ -1,4 +1,5 @@
 from pyscript.js_modules import jsapi
+from pyscript import document
 
 def init_desmos():
     jsapi.init_desmos()
@@ -12,5 +13,8 @@ def clear():
 def log(text: str):
     jsapi.log(text)
 
-def alert(text: str):
-    jsapi.alert(text)
+def alert_user(text: str):
+    jsapi.alert_user(text)
+
+def getValueById(id: str):
+    return document.getElementById(id).value

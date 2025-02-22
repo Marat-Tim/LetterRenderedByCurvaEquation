@@ -16,3 +16,7 @@ export function set_expression(id, latex) {
 export function clear() {
     calculator.setBlank()
 }
+
+export function alert_user(msg) {
+    alert(msg)
+}

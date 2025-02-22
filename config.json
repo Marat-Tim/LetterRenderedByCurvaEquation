@@ -6,6 +6,10 @@
         }
     },
     "files": {
-        "./jsapi.py": ""
+        "./jsapi.py": "",
+        "./config.py": "",
+        "./common.py": "",
+        "./letter/Letter.py": "./letter/",
+        "./letter/ru/А.py": "./letter/ru/"
     }
 }
