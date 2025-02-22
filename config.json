@@ -10,6 +10,7 @@
         "./config.py": "",
         "./common.py": "",
         "./Letter.py": "",
-        "./letter/ru/А.py": "./letter/ru/"
+        "./letter/ru/А.py": "./letter/ru/",
+        "./letter/ru/Б.py": "./letter/ru/"
     }
 }
