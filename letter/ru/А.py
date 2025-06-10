@@ -7,5 +7,6 @@ expr = Eq(
         S(1 + eps - y - 4 * Abs(x)) /
         (1 - Abs(y))
     ),
-    0)
+    0
+)
 size = 1
