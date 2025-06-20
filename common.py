@@ -4,7 +4,7 @@ from sympy import sqrt as Sqrt
 
 y = sp.Symbol('y')
 x = sp.Symbol('x')
-eps = 0.1
+eps = S(1) / 10
 
 def mul(*args):
     return Mul(*args, evaluate=False)
