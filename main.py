@@ -1,4 +1,7 @@
 import os
+
+import sympy
+
 from Letter import Letter
 from common import *
 from config import *
@@ -38,6 +41,7 @@ def count_total_size(text: str) -> float:
 
 def graph(event):
     try:
+        log(f"Версия sympy: {sympy.__version__}")
         log("Очищаем элемент десмоса")
         clear()
         log("Получаем текст из формы для ввода")
@@ -54,8 +58,9 @@ def graph(event):
             log(f"Начинаем рисовать символ номер {i}")
             letter = char_to_letter[text[i]]
             center = curr + S(letter.size()) / 2
-            log("Устанавливаем итоговое выражение в элемент десмоса")
-            set_expr(str(i), letter.expr_latex(x - center))
+            final_expr = letter.expr_latex(x - center)
+            log(f"Устанавливаем итоговое выражение в элемент десмоса, уравнение: {final_expr}")
+            set_expr(str(i), final_expr)
             curr += letter.size() + indent_size
     except ValueError as ex:
         log(str(ex))

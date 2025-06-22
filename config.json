@@ -11,6 +11,11 @@
         "./common.py": "",
         "./Letter.py": "",
         "./letter/ru/А.py": "./letter/ru/",
-        "./letter/ru/Б.py": "./letter/ru/"
+        "./letter/ru/Б.py": "./letter/ru/",
+        "./letter/ru/В.py": "./letter/ru/",
+        "./letter/ru/Г.py": "./letter/ru/",
+        "./letter/ru/Д.py": "./letter/ru/",
+        "./letter/ru/Е.py": "./letter/ru/",
+        "./letter/ru/Ж.py": "./letter/ru/"
     }
 }

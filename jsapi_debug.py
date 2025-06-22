@@ -14,6 +14,6 @@ def alert_user(text: str):
     print(f'alert_user("{text}")')
 
 def getValueById(id: str):
-    ret = "АА"
+    ret = input("Введите текст: ")
     print(f'getValueById("{id}")="{ret}"')
     return ret
