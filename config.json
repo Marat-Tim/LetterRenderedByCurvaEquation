@@ -18,6 +18,7 @@
         "./letter/ru/Е.py": "./letter/ru/",
         "./letter/ru/Ж.py": "./letter/ru/",
         "./letter/ru/З.py": "./letter/ru/",
-        "./letter/ru/И.py": "./letter/ru/"
+        "./letter/ru/И.py": "./letter/ru/",
+        "./letter/ru/Й.py": "./letter/ru/"
     }
 }
