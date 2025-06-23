@@ -23,6 +23,7 @@
         "./letter/ru/К.py": "./letter/ru/",
         "./letter/ru/Л.py": "./letter/ru/",
         "./letter/ru/М.py": "./letter/ru/",
-        "./letter/ru/Н.py": "./letter/ru/"
+        "./letter/ru/Н.py": "./letter/ru/",
+        "./letter/ru/О.py": "./letter/ru/"
     }
 }
