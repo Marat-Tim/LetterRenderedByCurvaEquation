@@ -27,6 +27,7 @@
         "./letter/ru/О.py": "./letter/ru/",
         "./letter/ru/П.py": "./letter/ru/",
         "./letter/ru/Р.py": "./letter/ru/",
-        "./letter/ru/С.py": "./letter/ru/"
+        "./letter/ru/С.py": "./letter/ru/",
+        "./letter/ru/Т.py": "./letter/ru/"
     }
 }
