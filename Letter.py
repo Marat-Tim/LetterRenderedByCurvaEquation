@@ -7,6 +7,8 @@ class Letter:
         self._size = size
 
     def expr_latex(self, arg: sp.Expr) -> str:
+        if self._expr is None:
+            raise Exception("Пытаемся получить выражение для пробела")
         return sp.latex(self._expr.subs(x, arg))
 
     def size(self) -> float:
