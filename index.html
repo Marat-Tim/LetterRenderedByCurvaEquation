@@ -39,6 +39,14 @@
         const loading = document.getElementById('loading');
         window.addEventListener('py:ready', () => {
             loading.close()
+            const params = new URLSearchParams(window.location.search);
+            const text = params.get("text");
+            if (text) {
+                const input = document.getElementById("text");
+                const button = document.getElementById("draw");
+                input.value = text;
+                setTimeout(() => button.click(), 1000)
+            }
         });
         window.addEventListener('DOMContentLoaded', () => {
             const elt = document.getElementById('calculator');
