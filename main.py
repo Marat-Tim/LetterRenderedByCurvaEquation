@@ -1,4 +1,5 @@
 import os
+import traceback
 
 import sympy
 
@@ -13,7 +14,7 @@ else:
 
 init_desmos()
 
-char_to_letter: dict[str, Letter] = {}
+char_to_letter: dict[str, Letter] = {" ": Letter(None, 1)}
 
 all_letter_files = result = [os.path.join(dp, f) for dp, dn, filenames in os.walk("letter") for f in filenames if os.path.splitext(f)[1] == '.py']
 
@@ -30,7 +31,7 @@ for file in all_letter_files:
 def validate(text: str):
     incorrect = []
     for c in text:
-        if c not in char_to_letter:
+        if c != " " and c not in char_to_letter:
             incorrect.append(c)
     if len(incorrect) > 0:
         raise ValueError(f"Символы {incorrect} на данный момент не поддерживаются")
@@ -56,17 +57,20 @@ def graph(event):
         curr = -S(total_size) / 2
         for i in range(len(text)):
             log(f"Начинаем рисовать символ номер {i}")
-            letter = char_to_letter[text[i]]
-            center = curr + S(letter.size()) / 2
-            final_expr = letter.expr_latex(x - center)
-            log(f"Устанавливаем итоговое выражение в элемент десмоса, уравнение: {final_expr}")
-            set_expr(str(i), final_expr)
-            curr += letter.size() + indent_size
+            if text[i] == " ":
+                curr += 1 + indent_size
+            else:
+                letter = char_to_letter[text[i]]
+                center = curr + S(letter.size()) / 2
+                final_expr = letter.expr_latex(x - center)
+                log(f"Устанавливаем итоговое выражение в элемент десмоса, уравнение: {final_expr}")
+                set_expr(str(i), final_expr)
+                curr += letter.size() + indent_size
     except ValueError as ex:
         log(str(ex))
         alert_user(str(ex))
     except Exception as ex:
-        log(str(ex))
+        log(traceback.format_exc())
         alert_user("При отрисовке возникла ошибка")
 
 if debug:
