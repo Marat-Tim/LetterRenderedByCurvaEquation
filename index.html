@@ -34,13 +34,30 @@
             height: calc(100vh - 50px);
         }
     </style>
+
+    <script type="module">
+        const loading = document.getElementById('loading');
+        window.addEventListener('py:ready', () => {
+            loading.close()
+        });
+        window.addEventListener('DOMContentLoaded', () => {
+            const elt = document.getElementById('calculator');
+            window.desmosCalculator = Desmos.GraphingCalculator(elt);
+        });
+        loading.showModal();
+    </script>
 </head>
 <body>
+
+<dialog id="loading">
+    <h1>Инициализируем pyscript, может занять какое-то время...</h1>
+</dialog>
 
 <div id="input-container">
     <label for="text">Введите текст:</label>
     <input id="text" type="text">
-    <button py-click="graph">Нарисовать</button>
+    <button id="draw" py-click="graph">Нарисовать</button>
+    <span class="note">* Окно ввода может быть недоступно, пока загружается окружение</span>
 </div>
 
 <div id="calculator"></div>

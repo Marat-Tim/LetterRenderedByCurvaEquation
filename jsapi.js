@@ -5,8 +5,7 @@ export function log(text) {
 }
 
 export function init_desmos() {
-    const elt = document.getElementById('calculator')
-    calculator = Desmos.GraphingCalculator(elt)
+    calculator = window.desmosCalculator
 }
 
 export function set_expression(id, latex) {
