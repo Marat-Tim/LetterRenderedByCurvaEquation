@@ -1,4 +1,4 @@
-import { mathToLatex } from './mathToLatex.js';
+// math.js подключён глобально через <script> в index.html
 
 export class Letter {
     constructor(exprStr, size) {
@@ -10,9 +10,11 @@ export class Letter {
         if (!this._exprStr) {
             throw new Error("Пытаемся получить выражение для пробела");
         }
-        // Заменяем x на (x - center) текстово, сохраняя структуру выражения
-        const substituted = substituteX(this._exprStr, center);
-        return mathToLatex(substituted);
+        const centerStr = toExactFraction(center);
+        const substitution = center === 0 ? 'x' : `(x - ${centerStr})`;
+        const withSubst = this._exprStr.replace(/\bx\b/g, substitution);
+        const simplified = math.simplify(withSubst);
+        return fixLatex(simplified.toTex());
     }
 
     size() {
@@ -20,15 +22,27 @@ export class Letter {
     }
 }
 
-/**
- * Заменяет все вхождения переменной x на (x - center) в строке выражения.
- * Учитывает что x не должна быть частью другого имени (abs, sqrt и т.д.)
- */
-function substituteX(exprStr, center) {
-    if (center === 0) return exprStr;
-    const replacement = center > 0
-        ? `(x - ${center})`
-        : `(x + ${-center})`;
-    // Заменяем x только там где это отдельная переменная (не часть имени функции)
-    return exprStr.replace(/\bx\b/g, replacement);
+// Конвертирует число в строку точной дроби: 1.5 → "3/2", 0.5 → "1/2"
+function toExactFraction(num) {
+    if (Number.isInteger(num)) return String(num);
+    const str = num.toString();
+    const decimals = (str.split('.')[1] || '').length;
+    const denom = Math.pow(10, decimals);
+    const numer = Math.round(num * denom);
+    const g = gcd(Math.abs(numer), denom);
+    return `${numer / g}/${denom / g}`;
+}
+
+function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
+
+// Исправляет артефакты LaTeX генерации math.js которые мешают Desmos
+function fixLatex(latex) {
+    // \frac{-n}{d} → -\frac{n}{d}
+    latex = latex.replace(/\\frac\{-(\d+)\}\{(\d+)\}/g, '-\\frac{$1}{$2}');
+    // + -\frac → - \frac
+    latex = latex.replace(/\+\s*-\\frac/g, '- \\frac');
+    // \cdot-n → \cdot\left(-n\right)
+    latex = latex.replace(/\\cdot-(\d)/g, '\\cdot\\left(-$1\\right)');
+    latex = latex.replace(/\\cdot-\\frac/g, '\\cdot\\left(-\\frac');
+    return latex;
 }
