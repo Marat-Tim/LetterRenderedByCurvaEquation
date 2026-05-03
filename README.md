@@ -1,5 +1,7 @@
 # Отрисовщик букв с помощью уравнения кривых
 
+![demo](./img/demo.gif)
+
 Вы можете попробовать приложение здесь - 
 https://marat-tim.github.io/LetterRenderedByCurvaEquation/
 (загрузка может занимать несколько секунд)
