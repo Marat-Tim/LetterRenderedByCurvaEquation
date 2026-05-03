@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desmos Graphs</title>
     <script src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-    <link rel="stylesheet" href="https://pyscript.net/releases/2025.2.2/core.css">
-    <script type="module" src="https://pyscript.net/releases/2025.2.2/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nerdamer@1.1.13/all.min.js"></script>
 
     <style>
         html, body {
@@ -55,56 +54,21 @@
             flex: 1;
             min-width: 150px;
         }
-
-        dialog#loading {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90%;
-            padding: 1em;
-            z-index: 1000;
-        }
     </style>
 
-    <script type="module">
-        const loading = document.getElementById('loading');
-        window.addEventListener('py:ready', () => {
-            loading.close();
-            const params = new URLSearchParams(window.location.search);
-            const text = params.get("text");
-            if (text) {
-                const input = document.getElementById("text");
-                const button = document.getElementById("draw");
-                input.value = text;
-                setTimeout(() => button.click(), 1000);
-            }
-        });
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const elt = document.getElementById('calculator');
-            window.desmosCalculator = Desmos.GraphingCalculator(elt);
-        });
-
-        loading.showModal();
-    </script>
 </head>
 <body>
-
-<dialog id="loading">
-    <h1>Инициализируем pyscript, может занять какое-то время...</h1>
-</dialog>
 
 <div id="input-container">
     <label for="text">Введите текст:</label>
     <input id="text" type="text">
-    <button id="draw" py-click="graph">Нарисовать</button>
-    <span class="note">* pyscript может долго думать после загрузки(подождите 20-30 секунд)</span>
+    <button id="draw">Нарисовать</button>
 </div>
 
 <div id="calculator"></div>
 
-<script type="py" src="main.py" config="./config.json"></script>
+<script type="module" src="main.js"></script>
 
 </body>
 </html>
